@@ -42,6 +42,17 @@ COLOUR="$GRN"
 fi
 # You can use echo -e instead of the printf command. 
 printf "[$COLOUR$CHARGE%% $NON$BATSTT]"
+# On SailfishOS, fingerterm is the default terminal app. 
+# There is an odd Problem with the first character of a string value in PS1 prompt.
+# Maybe it is related to libreadline and the octal escape sequence \001 and \002.
+# I leads to a wrong color for the first character of a string value when using 
+# any character before the string value"
+# Using havoc as a terminal app will work without problems.
+# However, if you use fingerterm, you can move the $BATSTT value
+# before the percentage value.
+# This problem will ocur on SailfishOS/fingerterm only localy on the device. 
+# You can use this line instead:
+#printf "[$NON$BATSTT $COLOUR$CHARGE%%]" 
 }
 
 # If not running interactively, don't do anything
